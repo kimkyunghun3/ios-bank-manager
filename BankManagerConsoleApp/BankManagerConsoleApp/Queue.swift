@@ -25,3 +25,7 @@ final class Queue<Element> {
     func enqueue(_ element: Element) {
         return list.append(element)
     }
+
+    func dequeue() -> Element? {
+        return list.removeFirst()
+    }
