@@ -29,3 +29,8 @@ final class Queue<Element> {
     func dequeue() -> Element? {
         return list.removeFirst()
     }
+
+    func clear() {
+        list.clear()
+    }
+}
