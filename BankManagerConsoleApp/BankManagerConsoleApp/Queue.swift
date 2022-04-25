@@ -21,3 +21,7 @@ final class Queue<Element> {
     var peek: Element? {
         return list.peek
     }
+
+    func enqueue(_ element: Element) {
+        return list.append(element)
+    }
