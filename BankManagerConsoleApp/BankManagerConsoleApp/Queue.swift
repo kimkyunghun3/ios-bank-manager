@@ -2,7 +2,7 @@
 //  Queue.swift
 //  BankManagerConsoleApp
 //
-//  Created by Eddy on 2022/04/25.
+//  Created by Eddy, dudu on 2022/04/25.
 //
 
 import Foundation
@@ -16,4 +16,8 @@ final class Queue<Element> {
 
     var isEmpty: Bool {
         return list.isEmpty
+    }
+
+    var peek: Element? {
+        return list.peek
     }
