@@ -42,6 +42,8 @@
 		94918B3628165245000E91FF /* LinkedListTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LinkedListTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		94918B3828165245000E91FF /* LinkedListTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedListTest.swift; sourceTree = "<group>"; };
 		94918B3D28165259000E91FF /* LinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
+		94918B462817CA0C000E91FF /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		94918B482817CAFF000E91FF /* BankClerk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankClerk.swift; sourceTree = "<group>"; };
 		C13B8D414602EF80CA120A44 /* Pods-BankManagerConsoleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BankManagerConsoleApp.debug.xcconfig"; path = "Target Support Files/Pods-BankManagerConsoleApp/Pods-BankManagerConsoleApp.debug.xcconfig"; sourceTree = "<group>"; };
 		C7694E76259C3EC00053667F /* BankManagerConsoleApp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BankManagerConsoleApp; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7694E79259C3EC00053667F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -95,6 +97,15 @@
 			path = DataModel;
 			sourceTree = "<group>";
 		};
+		94918B452817C9FC000E91FF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				94918B462817CA0C000E91FF /* Customer.swift */,
+				94918B482817CAFF000E91FF /* BankClerk.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		96D53378D7D2F3F31B834C5D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				94918B442817C952000E91FF /* DataModel */,
+				94918B452817C9FC000E91FF /* Model */,
 				C7D65D1A259C8190005510E0 /* BankManager.swift */,
 				C7694E79259C3EC00053667F /* main.swift */,
 			);
