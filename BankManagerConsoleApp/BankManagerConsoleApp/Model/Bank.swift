@@ -8,6 +8,7 @@
 struct Bank {
     private let waitingQueue = Queue<Customer>()
     private let clerk = BankClerk()
+    private var handledCustomerCount = 0
 
     private func makeCustomers() {
         let customerCount = Int.random(in: 10...30)
@@ -16,9 +17,10 @@ struct Bank {
         }
     }
 
-    private func sendCustomerToClerk() {
+    private mutating func sendCustomerToClerk() {
         while !waitingQueue.isEmpty {
             guard let customer = waitingQueue.dequeue() else { return }
+            handledCustomerCount += 1
             clerk.work(for: customer)
         }
     }
