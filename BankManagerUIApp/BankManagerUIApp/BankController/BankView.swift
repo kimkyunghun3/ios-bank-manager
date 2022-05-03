@@ -8,6 +8,18 @@
 import UIKit
 
 class BankView: UIView {
+    private lazy var baseStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
+            buttonStackView,
+            businessHoursLabel,
+            workStateStackView,
+            customerStackView])
+            
+        stackView.axis = .vertical
+        
+        return stackView
+    }()
+    
     private lazy var buttonStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [addCustomerbutton, resetButton])
         
@@ -86,4 +98,31 @@ class BankView: UIView {
         
         return stackView
     }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        layout()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+// MARK: - layout
+
+extension BankView {
+    private func layout() {
+        baseStackView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(baseStackView)
+
+        // MARK: - baseStackView
+        
+        NSLayoutConstraint.activate([
+            baseStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            baseStackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            baseStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            baseStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor)
+        ])
+    }
 }
