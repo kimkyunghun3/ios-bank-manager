@@ -10,6 +10,7 @@ import UIKit
 class BankView: UIView {
     private lazy var buttonStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [addCustomerbutton, resetButton])
+        
         return stackView
     }()
     
@@ -17,6 +18,7 @@ class BankView: UIView {
         let button = UIButton()
         button.setTitle("고객 10명 추가", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
+        
         return button
     }()
     
@@ -24,6 +26,7 @@ class BankView: UIView {
         let button = UIButton()
         button.setTitle("초기화", for: .normal)
         button.setTitleColor(.systemRed, for: .normal)
+        
         return button
     }()
     
@@ -38,6 +41,7 @@ class BankView: UIView {
     private lazy var workStateStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [waitLabel, workLabel])
         stackView.distribution = .fillEqually
+        
         return stackView
     }()
     
@@ -62,6 +66,24 @@ class BankView: UIView {
         
         return label
     }()
+    
+    private lazy var customerStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [waitStackView, workStackView])
+        
+        return stackView
+    }()
+    
+    private lazy var waitStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        
+        return stackView
+    }()
+    
+    private lazy var workStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        
+        return stackView
+    }()
 }
-
-
