@@ -16,12 +16,14 @@ class BankView: UIView {
             customerStackView])
             
         stackView.axis = .vertical
+        stackView.spacing = 15
         
         return stackView
     }()
     
     private lazy var buttonStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [addCustomerbutton, resetButton])
+        stackView.distribution = .fillEqually
         
         return stackView
     }()
@@ -45,6 +47,7 @@ class BankView: UIView {
     private lazy var businessHoursLabel: UILabel = {
         let label = UILabel()
         label.text = "업무시간 - 00:00:000"
+        label.textAlignment = .center
         label.font = .preferredFont(forTextStyle: .title3)
         
         return label
@@ -74,7 +77,7 @@ class BankView: UIView {
         label.textAlignment = .center
         label.textColor = .white
         label.font = .preferredFont(forTextStyle: .title1)
-        label.backgroundColor = .systemPurple
+        label.backgroundColor = .systemIndigo
         
         return label
     }()
