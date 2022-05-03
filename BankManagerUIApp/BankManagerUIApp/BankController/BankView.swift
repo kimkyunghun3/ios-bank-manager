@@ -34,6 +34,34 @@ class BankView: UIView {
         
         return label
     }()
+    
+    private lazy var workStateStackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [waitLabel, workLabel])
+        stackView.distribution = .fillEqually
+        return stackView
+    }()
+    
+    private lazy var waitLabel: UILabel = {
+        let label = UILabel()
+        label.text = "대기중"
+        label.textAlignment = .center
+        label.textColor = .white
+        label.font = .preferredFont(forTextStyle: .title1)
+        label.backgroundColor = .systemGreen
+        
+        return label
+    }()
+    
+    private lazy var workLabel: UILabel = {
+        let label = UILabel()
+        label.text = "업무중"
+        label.textAlignment = .center
+        label.textColor = .white
+        label.font = .preferredFont(forTextStyle: .title1)
+        label.backgroundColor = .systemPurple
+        
+        return label
+    }()
 }
 
 
