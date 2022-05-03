@@ -26,6 +26,14 @@ class BankView: UIView {
         button.setTitleColor(.systemRed, for: .normal)
         return button
     }()
+    
+    private lazy var businessHoursLabel: UILabel = {
+        let label = UILabel()
+        label.text = "업무시간 - 00:00:000"
+        label.font = .preferredFont(forTextStyle: .title3)
+        
+        return label
+    }()
 }
 
 
