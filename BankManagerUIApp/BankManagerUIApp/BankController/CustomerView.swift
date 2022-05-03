@@ -31,3 +31,22 @@ class CustomerView: UIView {
         return label
     }()
 }
+
+// MARK: - layout
+
+extension CustomerView {
+    
+    private func layout() {
+        customerLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(customerLabel)
+        
+        // MARK: - customerLabel
+        
+        NSLayoutConstraint.activate([
+            customerLabel.topAnchor.constraint(equalTo: self.topAnchor),
+            customerLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            customerLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            customerLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+        ])
+    }
+}
