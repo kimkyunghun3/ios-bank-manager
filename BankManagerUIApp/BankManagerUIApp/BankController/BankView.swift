@@ -33,6 +33,7 @@ final class BankView: UIView {
         let button = UIButton()
         button.setTitle("고객 10명 추가", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
+        button.titleLabel?.font = .preferredFont(forTextStyle: .caption2)
         
         return button
     }()
@@ -41,6 +42,7 @@ final class BankView: UIView {
         let button = UIButton()
         button.setTitle("초기화", for: .normal)
         button.setTitleColor(.systemRed, for: .normal)
+        button.titleLabel?.font = .preferredFont(forTextStyle: .caption2)
         
         return button
     }()
@@ -104,6 +106,7 @@ final class BankView: UIView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
+        stackView.spacing = 8
         
         return stackView
     }()
@@ -112,6 +115,7 @@ final class BankView: UIView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
+        stackView.spacing = 8
         
         return stackView
     }()

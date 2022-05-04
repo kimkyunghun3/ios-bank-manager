@@ -22,7 +22,7 @@ final class CustomerView: UIView {
     
     private lazy var customerLabel: UILabel = {
         let label = UILabel()
-        customerLabel.translatesAutoresizingMaskIntoConstraints = false
+        label.translatesAutoresizingMaskIntoConstraints = false
         
         if customer.workType == .loan {
             label.textColor = .systemPurple
@@ -30,6 +30,7 @@ final class CustomerView: UIView {
 
         label.text = "\(customer.waitingNumber) - \(customer.workType.name)"
         label.textAlignment = .center
+        label.font = .preferredFont(forTextStyle: .callout)
         
         return label
     }()
