@@ -43,12 +43,12 @@ extension BankViewController {
 extension BankViewController: BankDelegate {
     func bankWorkDidFinish(_ bank: Bank) { }
     
-    func customerWorkDidStart(_ bank: Bank, waitingNumber: Int, workType: Banking) {
+    func customerWorkDidStart(_ bank: Bank, id: String) {
         DispatchQueue.main.async { [weak self] in
             guard let customerViews = self?.bankView.waitStackView.arrangedSubviews as? [CustomerView] else { return }
             
             guard let targetView = customerViews.filter({ customerView in
-                customerView.customer.waitingNumber == waitingNumber
+                customerView.customer.id == id
             }).first else { return }
             
             targetView.removeFromSuperview()
@@ -56,12 +56,12 @@ extension BankViewController: BankDelegate {
         }
     }
     
-    func customerWorkDidFinish(_ bank: Bank, waitingNumber: Int, workType: Banking) {
+    func customerWorkDidFinish(_ bank: Bank, id: String) {
         DispatchQueue.main.async { [weak self] in
             guard let customerViews = self?.bankView.workStackView.arrangedSubviews as? [CustomerView] else { return }
             
             guard let targetView = customerViews.filter({ customerView in
-                customerView.customer.waitingNumber == waitingNumber
+                customerView.customer.id == id
             }).first else { return }
             
             targetView.removeFromSuperview()

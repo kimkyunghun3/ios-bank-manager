@@ -9,8 +9,8 @@ import Foundation
 
 protocol BankDelegate: AnyObject {
     func bankWorkDidFinish(_ bank: Bank)
-    func customerWorkDidStart(_ bank: Bank, waitingNumber: Int, workType: Banking)
-    func customerWorkDidFinish(_ bank: Bank, waitingNumber: Int, workType: Banking)
+    func customerWorkDidStart(_ bank: Bank, id: String)
+    func customerWorkDidFinish(_ bank: Bank, id: String)
 }
 
 final class Bank {
@@ -79,10 +79,10 @@ final class Bank {
 
 extension Bank: BankWindowDelegate {
     func customerWorkDidStart(_ bankWindow: BankWindow, customer: Customer) {
-        delegate?.customerWorkDidStart(self, waitingNumber: customer.waitingNumber, workType: customer.workType)
+        delegate?.customerWorkDidStart(self, id: customer.id)
     }
 
     func customerWorkDidFinish(_ bankWindow: BankWindow, customer: Customer) {
-        delegate?.customerWorkDidFinish(self, waitingNumber: customer.waitingNumber, workType: customer.workType)
+        delegate?.customerWorkDidFinish(self, id: customer.id)
     }
 }
