@@ -20,6 +20,7 @@ final class BankViewController: UIViewController {
 extension BankViewController {
     private func attribute() {
         bankView.backgroundColor = .systemBackground
+        bank.delegate = self
     }
     
     private func bind() {
@@ -37,4 +38,23 @@ extension BankViewController {
         bank.add(customers: customers)
         bank.open()
     }
+}
+
+extension BankViewController: BankDelegate {
+    func bankWorkDidFinish(_ bank: Bank) { }
+    
+    func customerWorkDidStart(_ bank: Bank, waitingNumber: Int, workType: Banking) {
+        DispatchQueue.main.async { [weak self] in
+            guard let customerViews = self?.bankView.waitStackView.arrangedSubviews as? [CustomerView] else { return }
+            
+            guard let targetView = customerViews.filter({ customerView in
+                customerView.customer.waitingNumber == waitingNumber
+            }).first else { return }
+            
+            targetView.removeFromSuperview()
+            self?.bankView.workStackView.addArrangedSubview(targetView)
+        }
+    }
+    
+    func customerWorkDidFinish(_ bank: Bank, waitingNumber: Int, workType: Banking) { }
 }
