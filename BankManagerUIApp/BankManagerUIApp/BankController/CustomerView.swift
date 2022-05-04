@@ -22,12 +22,14 @@ final class CustomerView: UIView {
     
     private lazy var customerLabel: UILabel = {
         let label = UILabel()
+        customerLabel.translatesAutoresizingMaskIntoConstraints = false
         
         if customer.workType == .loan {
             label.textColor = .systemPurple
         }
 
         label.text = "\(customer.waitingNumber) - \(customer.workType.name)"
+        label.textAlignment = .center
         
         return label
     }()
@@ -38,7 +40,6 @@ final class CustomerView: UIView {
 extension CustomerView {
     
     private func layout() {
-        customerLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(customerLabel)
         
         // MARK: - customerLabel
