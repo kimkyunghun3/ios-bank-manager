@@ -36,7 +36,6 @@ final class Bank {
 
     func open() {
         duration = checkTime(target: sendCustomerToClerk)
-        reset()
     }
 
     func add(customers: [Customer]) {
@@ -79,8 +78,9 @@ final class Bank {
         }
     }
 
-    private func reset() {
+    func reset() {
         duration = 0.0
+        waitingNumber = 1
     }
 }
 
