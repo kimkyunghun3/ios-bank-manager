@@ -58,7 +58,10 @@ extension BankViewController {
 }
 
 extension BankViewController: BankDelegate {
-    func bankWorkDidFinish(_ bank: Bank) { }
+    func bankWorkDidFinish(_ bank: Bank) {
+        timer?.invalidate()
+        timer = nil
+    }
     
     func customerWorkDidStart(_ bank: Bank, id: String) {
         DispatchQueue.main.async { [weak self] in
