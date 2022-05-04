@@ -20,9 +20,8 @@ final class Bank {
     private let loanQueue = OperationQueue()
     private let depositQueue = OperationQueue()
     private(set) var waitingNumber = 1
-    private(set) var duration = 0.0
     weak var delegate: BankDelegate?
-    let group = DispatchGroup()
+    private let group = DispatchGroup()
 
     init(loanWindow: BankWindow, depositWindow: BankWindow) {
         self.loanWindow = loanWindow
@@ -35,7 +34,7 @@ final class Bank {
     }
 
     func open() {
-        duration = checkTime(target: sendCustomerToClerk)
+        sendCustomerToClerk()
     }
 
     func add(customers: [Customer]) {
@@ -44,13 +43,6 @@ final class Bank {
         customers.forEach { customer in
             waitingQueue.enqueue(customer)
         }
-    }
-
-    private func checkTime(target: () -> Void) -> Double {
-        let startTime = CFAbsoluteTimeGetCurrent()
-        target()
-        let endTime = CFAbsoluteTimeGetCurrent()
-        return (endTime - startTime)
     }
 
     private func sendCustomerToClerk() {
@@ -79,7 +71,6 @@ final class Bank {
     }
 
     func reset() {
-        duration = 0.0
         waitingNumber = 1
     }
 }

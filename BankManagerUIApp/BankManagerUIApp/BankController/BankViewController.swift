@@ -41,7 +41,6 @@ extension BankViewController {
         bank.add(customers: customers)
         bank.open()
         
-        
         if timer == nil {
             timer = Timer.scheduledTimer(timeInterval: 0.003, target: self, selector: #selector(startTimer), userInfo: nil, repeats: true)
         }
