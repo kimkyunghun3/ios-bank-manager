@@ -17,6 +17,8 @@ final class Bank {
     private let waitingQueue = Queue<Customer>()
     private let loanWindow: BankWindow
     private let depositWindow: BankWindow
+    private let loanQueue = OperationQueue()
+    private let depositQueue = OperationQueue()
     private(set) var customerCount = 0
     private(set) var duration = 0.0
     weak var delegate: BankDelegate?
@@ -24,9 +26,11 @@ final class Bank {
     init(loanWindow: BankWindow, depositWindow: BankWindow) {
         self.loanWindow = loanWindow
         self.depositWindow = depositWindow
-
         self.loanWindow.delegate = self
         self.depositWindow.delegate = self
+        
+        loanQueue.maxConcurrentOperationCount = 1
+        depositQueue.maxConcurrentOperationCount = 2
     }
 
     func open() {
@@ -49,12 +53,7 @@ final class Bank {
     }
 
     private func sendCustomerToClerk() {
-        let loanQueue = OperationQueue()
-        let depositQueue = OperationQueue()
-
-        loanQueue.maxConcurrentOperationCount = 1
-        depositQueue.maxConcurrentOperationCount = 2
-
+        
         while let customer = waitingQueue.dequeue() {
             customerCount += 1
 
