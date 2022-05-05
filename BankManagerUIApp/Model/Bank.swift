@@ -33,19 +33,17 @@ final class Bank {
         depositQueue.maxConcurrentOperationCount = 2
     }
 
-    func open() {
-        sendCustomerToClerk()
-    }
-
     func add(customers: [Customer]) {
         waitingNumber += customers.count
         
         customers.forEach { customer in
             waitingQueue.enqueue(customer)
         }
+        
+        sendCustomerToWindow()
     }
 
-    private func sendCustomerToClerk() {
+    private func sendCustomerToWindow() {
         while let customer = waitingQueue.dequeue() {
             waitingNumber += 1
             
@@ -62,7 +60,6 @@ final class Bank {
                     self.group.leave()
                 }
             }
-            
         }
         
         group.notify(queue: .main) {
