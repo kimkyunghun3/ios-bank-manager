@@ -12,7 +12,14 @@ private extension UIStackView {
             subView.removeFromSuperview()
         }
     }
+    
+    func addArrangedSubViews(_ views: [UIView]) {
+        views.forEach { view in
+            addArrangedSubview(view)
+        }
+    }
 }
+
 final class BankViewController: UIViewController {
     private lazy var bankView = BankView(frame: view.bounds)
     private let bank = Bank(loanWindow: BankLoanWindow(), depositWindow: BankDepositWindow())
@@ -40,10 +47,9 @@ extension BankViewController {
     
     @objc private func addCustomerButtonTapped() {
         let customers = BankCustomer.make(startNumber: bank.waitingNumber, count: 10)
+        let customerViews = customers.map { CustomerView(customer: $0) }
         
-        customers.forEach { customer in
-            bankView.waitStackView.addArrangedSubview(CustomerView(customer: customer))
-        }
+        bankView.waitStackView.addArrangedSubViews(customerViews)
         
         bank.add(customers: customers)
         setTimer()
