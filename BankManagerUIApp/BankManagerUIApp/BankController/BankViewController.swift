@@ -39,10 +39,7 @@ extension BankViewController {
         }
         
         bank.add(customers: customers)
-        
-        if timer == nil {
-            timer = Timer.scheduledTimer(timeInterval: 0.003, target: self, selector: #selector(startTimer), userInfo: nil, repeats: true)
-        }
+        setTimer()
     }
     
     @objc private func resetButtonTapped() {
@@ -58,6 +55,12 @@ extension BankViewController {
         }
         
         bank.reset()
+    }
+    
+    private func setTimer() {
+        if timer == nil {
+            timer = Timer.scheduledTimer(timeInterval: 0.003, target: self, selector: #selector(startTimer), userInfo: nil, repeats: true)
+        }
     }
     
     @objc func startTimer() {
