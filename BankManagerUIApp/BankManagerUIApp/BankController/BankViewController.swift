@@ -6,6 +6,12 @@
 
 import UIKit
 
+private enum Const {
+    static let timeInterval = 0.003
+    static let numberOfCusomter = 10
+    static let businessHoursFormat = "업무시간 - %02d:%02d:%03.0f"
+}
+
 private extension UIStackView {
     func removeAllSubViews() {
         arrangedSubviews.forEach { subView in
@@ -26,7 +32,7 @@ private extension Double {
         let second = Int(self.truncatingRemainder(dividingBy: 60))
         let miliSecond = self.truncatingRemainder(dividingBy: 1) * 1000
             
-        return String(format: "업무시간 - %02d:%02d:%03.0f", minute, second, miliSecond)
+        return String(format: Const.businessHoursFormat, minute, second, miliSecond)
     }
 }
 
@@ -60,7 +66,7 @@ extension BankViewController {
     }
     
     @objc private func addCustomerButtonTapped() {
-        let customers = BankCustomer.make(startNumber: bank.waitingNumber, count: 10)
+        let customers = BankCustomer.make(startNumber: bank.waitingNumber, count: Const.numberOfCusomter)
         let customerViews = customers.map { CustomerView(customer: $0) }
         
         bankView.waitStackView.addArrangedSubViews(customerViews)
@@ -81,7 +87,7 @@ extension BankViewController {
     
     private func setTimer() {
         if timer == nil {
-            timer = Timer.scheduledTimer(timeInterval: 0.003, target: self, selector: #selector(startTimer), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: Const.timeInterval, target: self, selector: #selector(startTimer), userInfo: nil, repeats: true)
         }
     }
     
@@ -90,8 +96,8 @@ extension BankViewController {
         timer = nil
     }
     
-    @objc func startTimer() {
-        seconds += 0.003
+    @objc private func startTimer() {
+        seconds += Const.timeInterval
     }
 }
 

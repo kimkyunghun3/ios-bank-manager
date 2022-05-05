@@ -7,6 +7,11 @@
 
 import Foundation
 
+private enum Const {
+    static let numberOfDepositClerk = 2
+    static let numberOfLoanClerk = 1
+}
+
 protocol BankDelegate: AnyObject {
     func bankWorkDidFinish(_ bank: Bank)
     func customerWorkDidStart(_ bank: Bank, id: String)
@@ -27,8 +32,8 @@ final class Bank {
         self.loanWindow = loanWindow
         self.depositWindow = depositWindow
         
-        loanQueue.maxConcurrentOperationCount = 1
-        depositQueue.maxConcurrentOperationCount = 2
+        loanQueue.maxConcurrentOperationCount = Const.numberOfLoanClerk
+        depositQueue.maxConcurrentOperationCount = Const.numberOfDepositClerk
     }
 
     func add(customers: [Customer]) {
