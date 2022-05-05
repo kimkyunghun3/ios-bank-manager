@@ -7,6 +7,40 @@
 
 import UIKit
 
+private enum Const {
+    enum BaseStackView {
+        static let spacing: CGFloat = 15
+    }
+    
+    enum WaitStackView {
+        static let spacing: CGFloat = 8
+    }
+    
+    enum WorkStackView {
+        static let spacing: CGFloat = 8
+    }
+    
+    enum AddButton {
+        static let title = "고객 10명 추가"
+    }
+    
+    enum ResetButton {
+        static let title = "초기화"
+    }
+    
+    enum BusinessHourLabel {
+        static let text = "업무시간 - 00:00:000"
+    }
+    
+    enum WaitLabel {
+        static let text = "대기중"
+    }
+    
+    enum WorkLabel {
+        static let text = "업무중"
+    }
+}
+
 final class BankView: UIView {
     private lazy var baseStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
@@ -17,7 +51,7 @@ final class BankView: UIView {
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.spacing = 15
+        stackView.spacing = Const.BaseStackView.spacing
         
         return stackView
     }()
@@ -31,7 +65,7 @@ final class BankView: UIView {
     
     lazy var addCustomerbutton: UIButton = {
         let button = UIButton()
-        button.setTitle("고객 10명 추가", for: .normal)
+        button.setTitle(Const.AddButton.title, for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
         button.titleLabel?.font = .preferredFont(forTextStyle: .caption2)
         
@@ -40,7 +74,7 @@ final class BankView: UIView {
     
     lazy var resetButton: UIButton = {
         let button = UIButton()
-        button.setTitle("초기화", for: .normal)
+        button.setTitle(Const.ResetButton.title, for: .normal)
         button.setTitleColor(.systemRed, for: .normal)
         button.titleLabel?.font = .preferredFont(forTextStyle: .caption2)
         
@@ -49,7 +83,7 @@ final class BankView: UIView {
     
     lazy var businessHoursLabel: UILabel = {
         let label = UILabel()
-        label.text = "업무시간 - 00:00:000"
+        label.text = Const.BusinessHourLabel.text
         label.textAlignment = .center
         label.font = .preferredFont(forTextStyle: .title3)
         
@@ -65,7 +99,7 @@ final class BankView: UIView {
     
     private lazy var waitLabel: UILabel = {
         let label = UILabel()
-        label.text = "대기중"
+        label.text = Const.WaitLabel.text
         label.textAlignment = .center
         label.textColor = .white
         label.font = .preferredFont(forTextStyle: .title1)
@@ -76,7 +110,7 @@ final class BankView: UIView {
     
     private lazy var workLabel: UILabel = {
         let label = UILabel()
-        label.text = "업무중"
+        label.text = Const.WorkLabel.text
         label.textAlignment = .center
         label.textColor = .white
         label.font = .preferredFont(forTextStyle: .title1)
@@ -106,7 +140,7 @@ final class BankView: UIView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.spacing = 8
+        stackView.spacing = Const.WaitStackView.spacing
         
         return stackView
     }()
@@ -115,7 +149,7 @@ final class BankView: UIView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
-        stackView.spacing = 8
+        stackView.spacing = Const.WorkStackView.spacing
         
         return stackView
     }()
