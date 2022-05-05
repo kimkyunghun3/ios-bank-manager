@@ -43,8 +43,7 @@ extension BankViewController {
     }
     
     @objc private func resetButtonTapped() {
-        timer?.invalidate()
-        timer = nil
+        resetTimer()
         bankView.businessHoursLabel.text = "업무시간 - 00:00:000"
         
         bankView.workStackView.arrangedSubviews.forEach { subView in
@@ -63,6 +62,11 @@ extension BankViewController {
         }
     }
     
+    private func resetTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
     @objc func startTimer() {
         seconds += 0.003
         
@@ -76,8 +80,7 @@ extension BankViewController {
 
 extension BankViewController: BankDelegate {
     func bankWorkDidFinish(_ bank: Bank) {
-        timer?.invalidate()
-        timer = nil
+        resetTimer()
     }
     
     func customerWorkDidStart(_ bank: Bank, id: String) {
