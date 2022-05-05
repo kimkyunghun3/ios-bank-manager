@@ -20,11 +20,25 @@ private extension UIStackView {
     }
 }
 
+private extension Double {
+    var formattedTime: String {
+        let minute = Int(self / 60)
+        let second = Int(self.truncatingRemainder(dividingBy: 60))
+        let miliSecond = self.truncatingRemainder(dividingBy: 1) * 1000
+            
+        return String(format: "업무시간 - %02d:%02d:%03.0f", minute, second, miliSecond)
+    }
+}
+
 final class BankViewController: UIViewController {
     private lazy var bankView = BankView(frame: view.bounds)
     private let bank = Bank(loanWindow: BankLoanWindow(), depositWindow: BankDepositWindow())
     private var timer: Timer?
-    private var seconds: Double = 0.0
+    private var seconds: Double = 0.0 {
+        didSet {
+            bankView.businessHoursLabel.text = seconds.formattedTime
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,8 +70,8 @@ extension BankViewController {
     }
     
     @objc private func resetButtonTapped() {
+        seconds = 0.0
         resetTimer()
-        bankView.businessHoursLabel.text = "업무시간 - 00:00:000"
         
         bankView.workStackView.removeAllSubViews()
         bankView.waitStackView.removeAllSubViews()
@@ -78,12 +92,6 @@ extension BankViewController {
     
     @objc func startTimer() {
         seconds += 0.003
-        
-        let minute = Int(seconds / 60)
-        let second = Int(seconds.truncatingRemainder(dividingBy: 60))
-        let miliSecond = seconds.truncatingRemainder(dividingBy: 1) * 1000
-            
-        bankView.businessHoursLabel.text = String(format: "업무시간 - %02d:%02d:%03.0f", minute, second, miliSecond )
     }
 }
 
