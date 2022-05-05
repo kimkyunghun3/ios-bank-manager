@@ -9,7 +9,7 @@ import UIKit
 private enum Const {
     static let timeInterval = 0.003
     static let numberOfCusomter = 10
-    static let businessHoursFormat = "업무시간 - %02d:%02d:%03.0f"
+    static let businessHoursFormat = "%02d:%02d:%03.0f"
 }
 
 private extension UIStackView {
@@ -42,7 +42,7 @@ final class BankViewController: UIViewController {
     private var timer: Timer?
     private var seconds: Double = 0.0 {
         didSet {
-            bankView.businessHoursLabel.text = seconds.formattedTime
+            bankView.timerLabel.text = seconds.formattedTime
         }
     }
     
