@@ -107,21 +107,21 @@ extension BankViewController: BankDelegate {
     }
     
     func customerWorkDidStart(_ bank: Bank, id: String) {
-        DispatchQueue.main.async { [weak self] in
-            guard let customerViews = self?.bankView.waitStackView.arrangedSubviews as? [CustomerView] else { return }
+        DispatchQueue.main.async {
+            guard let customerViews = self.bankView.waitStackView.arrangedSubviews as? [CustomerView] else { return }
             
             guard let targetView = customerViews.filter({ customerView in
                 customerView.customer.id == id
             }).first else { return }
             
             targetView.removeFromSuperview()
-            self?.bankView.workStackView.addArrangedSubview(targetView)
+            self.bankView.workStackView.addArrangedSubview(targetView)
         }
     }
     
     func customerWorkDidFinish(_ bank: Bank, id: String) {
-        DispatchQueue.main.async { [weak self] in
-            guard let customerViews = self?.bankView.workStackView.arrangedSubviews as? [CustomerView] else { return }
+        DispatchQueue.main.async {
+            guard let customerViews = self.bankView.workStackView.arrangedSubviews as? [CustomerView] else { return }
             
             guard let targetView = customerViews.filter({ customerView in
                 customerView.customer.id == id
