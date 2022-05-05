@@ -26,8 +26,6 @@ final class Bank {
     init(loanWindow: BankWindow, depositWindow: BankWindow) {
         self.loanWindow = loanWindow
         self.depositWindow = depositWindow
-        self.loanWindow.delegate = self
-        self.depositWindow.delegate = self
         
         loanQueue.maxConcurrentOperationCount = 1
         depositQueue.maxConcurrentOperationCount = 2
@@ -51,12 +49,22 @@ final class Bank {
             switch customer.workType {
             case .loan:
                 loanQueue.addOperation {
-                    self.loanWindow.receive(customer)
+                    self.loanWindow.receive {
+                        self.delegate?.customerWorkDidStart(self, id: customer.id)
+                    } end: {
+                        self.delegate?.customerWorkDidFinish(self, id: customer.id)
+                    }
+
                     self.group.leave()
                 }
             case .deposit:
                 depositQueue.addOperation {
-                    self.depositWindow.receive(customer)
+                    self.depositWindow.receive {
+                        self.delegate?.customerWorkDidStart(self, id: customer.id)
+                    } end: {
+                        self.delegate?.customerWorkDidFinish(self, id: customer.id)
+                    }
+
                     self.group.leave()
                 }
             }
@@ -69,15 +77,5 @@ final class Bank {
 
     func reset() {
         waitingNumber = 1
-    }
-}
-
-extension Bank: BankWindowDelegate {
-    func customerWorkDidStart(_ bankWindow: BankWindow, customer: Customer) {
-        delegate?.customerWorkDidStart(self, id: customer.id)
-    }
-
-    func customerWorkDidFinish(_ bankWindow: BankWindow, customer: Customer) {
-        delegate?.customerWorkDidFinish(self, id: customer.id)
     }
 }
