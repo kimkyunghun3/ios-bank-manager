@@ -6,6 +6,13 @@
 
 import UIKit
 
+private extension UIStackView {
+    func removeAllSubViews() {
+        arrangedSubviews.forEach { subView in
+            subView.removeFromSuperview()
+        }
+    }
+}
 final class BankViewController: UIViewController {
     private lazy var bankView = BankView(frame: view.bounds)
     private let bank = Bank(loanWindow: BankLoanWindow(), depositWindow: BankDepositWindow())
@@ -46,12 +53,8 @@ extension BankViewController {
         resetTimer()
         bankView.businessHoursLabel.text = "업무시간 - 00:00:000"
         
-        bankView.workStackView.arrangedSubviews.forEach { subView in
-            subView.removeFromSuperview()
-        }
-        bankView.waitStackView.arrangedSubviews.forEach { subView in
-            subView.removeFromSuperview()
-        }
+        bankView.workStackView.removeAllSubViews()
+        bankView.waitStackView.removeAllSubViews()
         
         bank.reset()
     }
